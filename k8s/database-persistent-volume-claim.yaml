@@ -1,0 +1,17 @@
+# "Volume" in generic container terminology: Some type of mechanism that allows a container to access a filesystem outside itself
+# "Volume" in Kubernetes: An object that allows a container to store data at the pod level
+# Without a volume, the data will be stored in the container. So when the container crashes, the data is gone.
+# "Persistent Volume" will be storing data outside of a pod
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: database-persistent-volume-claim
+spec:
+    accessModes:
+        - ReadWriteOnce
+        # ReadWriteOnce - Can be used by a single node
+        # ReadOnlyMany - Multiple nodes can read from this
+        # ReadWriteMany - Can be read and written to by many nodes
+    resources:
+        requests:
+            storage: 2Gi

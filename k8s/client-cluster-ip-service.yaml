@@ -1,0 +1,12 @@
+# ClusterIP exposes a set of pods to other objects IN THE CLUSTER. Outside traffic won't get access to a pod through ClusterIP. While NodePort allows us to use localhost:xxxx to get traffic by.
+apiVersion: v1
+kind: Service
+metadata:
+    name: client-cluster-ip-service
+spec:
+    type: ClusterIP
+    selector:
+        component: web
+    ports:
+        - port: 3000
+          targetPort: 3000
